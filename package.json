@@ -15,11 +15,11 @@
   "author": "Justin Palmer",
   "license": "ISC",
   "dependencies": {
-    "moo": "^0.5.2",
     "nearley": "^2.20.1"
   },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "jest-transform-nearley": "^2.0.0"
   },
   "jest": {
     "transform": {
