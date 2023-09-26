@@ -15,9 +15,9 @@ List of expressions we should parse
 - [x] 1 1/2"
 - [x] 1 1/2'
 - [ ] 1" 1/2 ??
-- [ ] 1' 1/2
-- [ ] 1' 1/2"
-- [ ] 1' 1"
+- [x] 1' 1/2
+- [x] 1' 1/2"
+- [x] 1' 1"
 
 ### Assumed inches
 
