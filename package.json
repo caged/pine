@@ -1,0 +1,32 @@
+{
+  "name": "pine",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "nearleyc pine.ne -o pine.js",
+    "ntest": "nearley-test pine.ne",
+    "test": "jest"
+  },
+  "keywords": [
+    "woodworking",
+    "measurement"
+  ],
+  "author": "Justin Palmer",
+  "license": "ISC",
+  "dependencies": {
+    "moo": "^0.5.2",
+    "nearley": "^2.20.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ne$": "jest-transform-nearley"
+    },
+    "setupFilesAfterEnv": [
+      "./tests/jest.setup.js"
+    ]
+  }
+}
