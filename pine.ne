@@ -22,6 +22,8 @@ inch -> int %primefoot %ws int %ws fraction %primeinch
 	| int %ws fraction %primefoot 
 	| int %ws fraction %primeinch 
 	| int %ws fraction 
-	| fraction %primeinch | fraction | int "\"" | int
-fraction -> int "/" int {% d => {{v: d[0] }} %}
-int -> %number:* {% d => {{v: d[0] }} %}
+	| fraction pi | fraction | int "\"" | int
+fraction -> int "/" int 
+int -> [0-9]:+ {% ([a, b]) => { return {v: a }} %}
+pi -> /\"/,
+_ -> [\s]:* {% (d) => null %}
