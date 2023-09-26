@@ -37,3 +37,7 @@ test("explicit whole foot and whole inch", () => {
 test("explicit whole foot and fraction inch", () => {
   expect(parse(`3' 1/2"`)).not.toThrowError();
 });
+
+test("explicit whole foot and implicit inch and explicit fraction inch", () => {
+  expect(parse(`3' 2 1/2"`)).not.toThrowError();
+});
