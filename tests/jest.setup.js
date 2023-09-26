@@ -7,6 +7,8 @@ global.parse = (input) => {
   return () => {
     const col = parser.save();
     parser.feed(input);
+    const results = parser.results;
     parser.restore(col);
+    return results;
   };
 };

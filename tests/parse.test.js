@@ -1,5 +1,9 @@
 test("implicit inch", () => {
-  expect(parse(`1`)).not.toThrowError();
+  const val = parse(`1`);
+  expect(val).not.toThrowError();
+
+  const v = val();
+  console.log(v[0][0]);
 });
 
 test("explicit inch", () => {
@@ -39,5 +43,6 @@ test("explicit whole foot and fraction inch", () => {
 });
 
 test("explicit whole foot and implicit inch and explicit fraction inch", () => {
-  expect(parse(`3' 2 1/2"`)).not.toThrowError();
+  const val = parse(`3' 2 1/2"`);
+  expect(val).not.toThrowError();
 });

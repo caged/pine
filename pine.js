@@ -2,32 +2,30 @@
 // http://github.com/Hardmath123/nearley
 (function () {
 function id(x) { return x[0]; }
-
-	const moo = require("moo")
-	const lexer = moo.compile({
-	  ws: /[ \t]+/,
-	  primeinch: /\"/,
-	  primefoot: /\'/,
-	  fract: /\//,
-	  number: /[0-9]+/,
-	  word: /[a-z]+/
-	});
 var grammar = {
-    Lexer: lexer,
+    Lexer: undefined,
     ParserRules: [
     {"name": "main", "symbols": ["measurement"]},
-    {"name": "measurement", "symbols": ["foot"]},
-    {"name": "measurement", "symbols": ["inch"]},
-    {"name": "foot", "symbols": ["int", {"literal":"'"}]},
-    {"name": "inch", "symbols": ["int", (lexer.has("ws") ? {type: "ws"} : ws), "fraction", (lexer.has("primeinch") ? {type: "primeinch"} : primeinch)]},
-    {"name": "inch", "symbols": ["int", (lexer.has("ws") ? {type: "ws"} : ws), "fraction"]},
-    {"name": "inch", "symbols": ["fraction"]},
-    {"name": "inch", "symbols": ["int", {"literal":"\""}]},
-    {"name": "inch", "symbols": ["int"]},
-    {"name": "fraction", "symbols": [(lexer.has("number") ? {type: "number"} : number), {"literal":"/"}, (lexer.has("number") ? {type: "number"} : number)]},
-    {"name": "int$ebnf$1", "symbols": [(lexer.has("number") ? {type: "number"} : number)]},
-    {"name": "int$ebnf$1", "symbols": ["int$ebnf$1", (lexer.has("number") ? {type: "number"} : number)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "int", "symbols": ["int$ebnf$1"]}
+    {"name": "measurement", "symbols": ["int", "_f", "_", "int", "_", "fraction", "_i"]},
+    {"name": "measurement", "symbols": ["int", "_f", "_", "int", "_i"]},
+    {"name": "measurement", "symbols": ["int", "_f", "_", "fraction", "_i"]},
+    {"name": "measurement", "symbols": ["int", "_", "fraction", "_f"]},
+    {"name": "measurement", "symbols": ["int", "_", "fraction", "_i"]},
+    {"name": "measurement", "symbols": ["int", "_", "fraction"]},
+    {"name": "measurement", "symbols": ["fraction", "_i"]},
+    {"name": "measurement", "symbols": ["fraction"]},
+    {"name": "measurement", "symbols": ["int", "_f"]},
+    {"name": "measurement", "symbols": ["int", "_i"]},
+    {"name": "measurement", "symbols": ["int"]},
+    {"name": "fraction", "symbols": ["int", {"literal":"/"}, "int"]},
+    {"name": "int$ebnf$1", "symbols": [/[0-9]/]},
+    {"name": "int$ebnf$1", "symbols": ["int$ebnf$1", /[0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "int", "symbols": ["int$ebnf$1"], "postprocess": ([a]) => { return { val: parseInt(a.join('')), str: a.join('') }}},
+    {"name": "_i", "symbols": [/[\"]/]},
+    {"name": "_f", "symbols": [{"literal":"'"}]},
+    {"name": "_$ebnf$1", "symbols": []},
+    {"name": "_$ebnf$1", "symbols": ["_$ebnf$1", /[\s]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "_", "symbols": ["_$ebnf$1"], "postprocess": (d) => null}
 ]
   , ParserStart: "main"
 }
