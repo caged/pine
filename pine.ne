@@ -1,15 +1,19 @@
-measurement -> int _f _ int _ fraction _i 
-    | int _f _ fraction _i   
-	| int _f _ int _i  
-	| int _f _ fraction  
-	| int _ fraction _f 
-	| int _ fraction _i 
-	| int _ fraction 
-	| fraction _i | fraction | int_f | int_i | int
-fraction -> int "/" int {% ([a, b, c]) => [`${a}/${c}`, a / c] %}
-int_f -> int _f {% ([a, b]) => [`${a}${b}`, a * 12] %}
-int_i -> int _i {% ([a, b]) => [`${a}${b}`, a] %}
-int -> [0-9]:+ {% d => parseInt(d[0].join('')) %}
+measurement -> 
+		intf _ intd _ fraction _i {% ([a, b, c, d, e]) => a + c + e  %}
+  | intf _ intd _ fraction {% ([a, b, c, d, e]) => a + c + e  %}
+  | intf _ fraction _i   {% ([a, b, c]) => a + c  %}
+	| intf _ inti  {% ([a, b, c]) => a + c  %}
+	| intf _ fraction  {% ([a, b, c]) => a + c  %}
+	| intd _ fraction _f {% ([a, b, c]) => a + (c * 12)  %}
+	| intd _ fraction _i {% ([a, b, c]) => a + c  %}
+	| intd _ fraction {% ([a, b, c]) => a + c  %}
+	| fraction _f {% ([a]) => a * 12  %}
+	| fraction _i {% ([a]) => a  %}
+	| fraction {% id %} | intf {% id %} | inti {% id %} | intd {% id %}
+fraction -> intd "/" intd {% ([a, b, c]) =>  a / c %}
+intf -> intd _f {% ([a, b]) => a * 12 %}
+inti -> intd _i {% ([a, b]) => a %}
+intd -> [0-9]:+ {% ([a]) => parseInt(a.join('')) %}
 _i -> [\"] {% id %}
 _f -> "'" {% id %}
 _ -> [\s]:* {% (d) => null %}

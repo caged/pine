@@ -2,8 +2,8 @@ test("implicit inch", () => {
   const val = parse(`1`);
   expect(val).not.toThrowError();
 
-  const [s, v] = val();
-  expect(s).toBe("1");
+  const d = val();
+  console.log(d);
   expect(v).toBe(1);
 });
 
