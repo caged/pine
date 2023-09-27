@@ -2,12 +2,18 @@ test("implicit inch", () => {
   const val = parse(`1`);
   expect(val).not.toThrowError();
 
-  const v = val();
-  console.log(v[0][0]);
+  const [s, v] = val();
+  expect(s).toBe("1");
+  expect(v).toBe(1);
 });
 
 test("explicit inch", () => {
-  expect(parse(`1"`)).not.toThrowError();
+  const val = parse(`1"`);
+  expect(val).not.toThrowError();
+
+  const [s, v] = val();
+  expect(s).toBe("1");
+  expect(v).toBe(1);
 });
 
 test("explicit foot", () => {

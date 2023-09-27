@@ -13,7 +13,9 @@ measurement ->
 	| int _i  												# 1"
 	| int 														# 1
 fraction -> int "/" int 
-int -> [0-9]:+ {% d => [d[0][0], parseInt(d[0][0])] %}
+int -> [0-9]:+ {% d => 
+	[ d[0].join(''), 
+		parseInt(d[0].join('')) ] %}
 _i -> [\"] {% id %}
 _f -> "'" {% id %}
 _ -> [\s]:* {% (d) => null %}

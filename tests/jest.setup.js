@@ -9,6 +9,6 @@ global.parse = (input) => {
     parser.feed(input);
     const results = parser.results;
     parser.restore(col);
-    return results;
+    return results[0][0];
   };
 };
