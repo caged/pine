@@ -1,9 +1,9 @@
 const NEAREST = 16.0;
 
 function gcd(a, b) {
-  if (b < 1 / NEAREST) return a; // Since there is a limited precision we need to limit the value.
+  if (b < 1 / NEAREST) return a;
 
-  return gcd(b, Math.floor(a % b)); // Discard any fractions due to limitations in precision.
+  return gcd(b, Math.floor(a % b));
 }
 
 function fraction(decimal) {
