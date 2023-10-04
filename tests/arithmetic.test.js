@@ -21,3 +21,21 @@ test("explicit foot addition", () => {
     expect(parse(`1' + 2'`)).toBe(36);
   }).not.toThrowError();
 });
+
+test("implicit whole and fraction addition", () => {
+  expect(() => {
+    expect(parse(`1 + 1/2`)).toBe(1.5);
+  }).not.toThrowError();
+});
+
+test("explicit whole and fraction addition", () => {
+  expect(() => {
+    expect(parse(`1" + 1/2"`)).toBe(1.5);
+  }).not.toThrowError();
+});
+
+test("explicit whole and fraction foot addition", () => {
+  expect(() => {
+    expect(parse(`1' + 1/2"`)).toBe(12.5);
+  }).not.toThrowError();
+});
