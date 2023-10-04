@@ -13,18 +13,21 @@ p -> measurement {% id %}
 
 # All of the ways to write a measurement
 measurement -> 
-		intf _ intd _ fraction _i {% ([a, b, c, d, e]) => a + c + e  %}
-  | intf _ intd _ fraction {% ([a, b, c, d, e]) => a + c + e  %}
-  | intf _ fraction _i   {% ([a, b, c]) => a + c  %}
-	| intf _ inti  {% ([a, b, c]) => a + c  %}
-	| intf _ intd  {% ([a, b, c]) => a + c  %}
-	| intf _ fraction  {% ([a, b, c]) => a + c  %}
-	| intd _ fraction _f {% ([a, b, c]) => (a * 12) + (c * 12)  %}
-	| intd _ fraction _i {% ([a, b, c]) => a + c  %}
-	| intd _ fraction {% ([a, b, c]) => a + c  %}
-	| fraction _f {% ([a]) => a * 12  %}
-	| fraction _i {% ([a]) => a  %}
-	| fraction {% id %} | intf {% id %} | inti {% id %} | intd {% id %}
+		intf _ intd _ fraction _i {% ([a, b, c, d, e]) => a + c + e  %} # 1' 1 1/2"
+  | intf _ intd _ fraction {% ([a, b, c, d, e]) => a + c + e  %} 		# 1' 1 1/2
+  | intf _ fraction _i   {% ([a, b, c]) => a + c  %} 								# 1' 1/2"
+	| intf _ inti  {% ([a, b, c]) => a + c  %} 												# 1' 1"
+	| intf _ intd  {% ([a, b, c]) => a + c  %} 												# 1' 1 
+	| intf _ fraction  {% ([a, b, c]) => a + c  %} 										# 1' 1/2
+	| intd _ fraction _f {% ([a, b, c]) => (a * 12) + (c * 12)  %} 		# 1 1/2'
+	| intd _ fraction _i {% ([a, b, c]) => a + c  %} 									# 1 1/2"
+	| intd _ fraction {% ([a, b, c]) => a + c  %} 										# 1 1/2
+	| fraction _f {% ([a]) => a * 12  %} 															# 1/2'
+	| fraction _i {% ([a]) => a  %} 																	# 1/2"
+	| fraction {% id %} 																							# 1/2
+	| intf {% id %} 																									# 1'
+	| inti {% id %} 																									# 1"
+	| intd {% id %} 																									# 1
 
 # Primeless fractions: 1/2
 fraction -> intd "/" intd {% ([a, b, c]) =>  a / c %}
