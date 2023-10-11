@@ -69,3 +69,15 @@ test("explicit whole foot and implicit inch and explicit fraction inch", () => {
     expect(parse(`3' 2 1/2"`)).toBe(38.5);
   }).not.toThrowError();
 });
+
+test("double digit denominator only ", () => {
+  expect(parse(`1/16`)).toBe(0.0625);
+});
+
+test("whole and double digit denominator ", () => {
+  expect(parse(`1 1/16"`)).toBe(1.0625);
+});
+
+test("double digit denominator only ", () => {
+  expect(parse(`5/16`)).toBe(0.3125);
+});
