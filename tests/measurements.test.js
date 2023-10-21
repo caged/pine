@@ -81,3 +81,11 @@ test("whole and double digit denominator ", () => {
 test("double digit denominator only ", () => {
   expect(parse(`5/16`)).toBe(0.3125);
 });
+
+test("inch mark can be curly quote", () => {
+  expect(parse(`1/2”`)).toBe(0.5);
+});
+
+test("foot mark can be curly quote", () => {
+  expect(parse(`2’`)).toBe(24);
+});

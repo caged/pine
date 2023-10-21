@@ -38,8 +38,8 @@ inti -> intd _i {% ([a, b]) => a %}
 intd -> [0-9]:+ {% ([a]) => parseInt(a.join('')) %}
 
 # Whitespace and prime marks
-_i -> [\"] {% id %}
-_f -> "'" {% id %}
+_i -> [\"] | [\”] {% id %}
+_f -> "'" | "’" {% id %}
 __ -> [\s]:+ {% (d) => null %}
 _ -> [\s]:* {% (d) => null %}
 
