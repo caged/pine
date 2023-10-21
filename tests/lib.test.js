@@ -39,3 +39,7 @@ test("should convert a fraction", () => {
 test("should convert a whole and fraction", () => {
   expect(convert(1.25)).toBe("1 1/4");
 });
+
+test("should convert", () => {
+  expect(convert("10 +")).toBeNull();
+});

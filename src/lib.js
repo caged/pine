@@ -23,6 +23,7 @@ function fraction(decimal) {
 }
 
 function convert(number) {
+  if (isNaN(number)) return null;
   if (Number.isInteger(number)) return number;
 
   const whole = Math.floor(number);
