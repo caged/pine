@@ -57,13 +57,15 @@ function mixedFraction(number) {
   return `${whole === 0 ? "" : whole + " "}${fraction(decimal)}`;
 }
 
-// Given a float or integer in inches, convert to feet and inches
+// Given a float or integer in inches, convert to feet and inches.
+// If the input is less than 12 inches, return implicit inches only.
 //
 // Example:
 //   feet(1) => 1
 //   feet("24.5") => "2' 1/2"
 //   feet(1.25) => "1 1/4"
 //   feet(45.5) => "3' 9 1/2"
+//   feet(10) => "10"
 //
 // Returns: string
 function feet(number) {
@@ -73,16 +75,13 @@ function feet(number) {
   const decimal = number % 12;
 
   if (whole === 0 && decimal === 0) return `0'`;
+  if (whole === 0 && decimal < 12) return mixedFraction(decimal);
 
   const wholepart = `${whole === 0 ? "" : whole + "'"}`;
 
   if (decimal === 0) return wholepart;
 
-  // If the number is less than a foot, be explicit that this is inches
-  // by appending a double quote prime mark.
-  if (!wholepart) {
-    return `${fraction(decimal)}"`;
-  }
+  if (!wholepart) return fraction(decimal);
 
   return `${wholepart} ${mixedFraction(decimal)}`;
 }

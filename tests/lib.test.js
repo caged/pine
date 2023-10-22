@@ -45,10 +45,12 @@ test("should throw error on invalid input", () => {
 });
 
 test("should convert inches to feet and inches", () => {
+  expect(feet(10)).toBe(`10`);
+  expect(feet(10.5)).toBe(`10 1/2`);
   expect(feet(24.5)).toBe(`2' 1/2`);
   expect(feet(24)).toBe(`2'`);
   expect(feet(12)).toBe(`1'`);
   expect(feet(0)).toBe(`0'`);
-  expect(feet(0.5)).toBe(`1/2"`);
+  expect(feet(0.5)).toBe(`1/2`);
   expect(feet(45.5)).toBe(`3' 9 1/2`);
 });
