@@ -1,4 +1,4 @@
-const { mixedFraction, fraction, gcd } = require("../src/lib.js");
+const { mixedFraction, feet, fraction, gcd } = require("../src/lib.js");
 
 test("should find greatest common denominator", () => {
   expect(gcd(12, 16)).toBe(4);
@@ -42,4 +42,13 @@ test("should convert a whole and fraction", () => {
 
 test("should throw error on invalid input", () => {
   expect(() => mixedFraction("10 +")).toThrowError();
+});
+
+test("should convert inches to feet and inches", () => {
+  expect(feet(24.5)).toBe(`2' 1/2`);
+  expect(feet(24)).toBe(`2'`);
+  expect(feet(12)).toBe(`1'`);
+  expect(feet(0)).toBe(`0'`);
+  expect(feet(0.5)).toBe(`1/2"`);
+  expect(feet(45.5)).toBe(`3' 9 1/2`);
 });
