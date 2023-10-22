@@ -39,22 +39,24 @@ function fraction(decimal) {
   )}`;
 }
 
-// Given a float or integer, convert to a whole and fraction
+// Given a float or integer, convert to a whole and fraction and return a string
+// that always contains prime marks for both feet and inches.
 //
 // Example:
-//   mixedFraction(1) => 1
-//   mixedFraction(0.125) => "1/8"
-//   mixedFraction(1.25) => "1 1/4"
+//   mixedFraction(1) => 1"
+//   mixedFraction(0.125) => 1/8"
+//   mixedFraction(1.25) => 1 1/4"
+//   mixedFraction(14.5) => 1' 2 1/2"
 //
 // Returns: string
 function mixedFraction(number) {
   if (isNaN(number)) throw new Error("Invalid input. Must be a number.");
-  if (Number.isInteger(number)) return String(number);
+  if (Number.isInteger(number)) return `${number}"`;
 
   const whole = Math.floor(number);
   const decimal = number % 1;
 
-  return `${whole === 0 ? "" : whole + " "}${fraction(decimal)}`;
+  return `${whole === 0 ? "" : whole + " "}${fraction(decimal)}"`;
 }
 
 // Given a float or integer in inches, convert to feet and inches.
@@ -62,10 +64,10 @@ function mixedFraction(number) {
 //
 // Example:
 //   feet(1) => 1
-//   feet("24.5") => "2' 1/2"
-//   feet(1.25) => "1 1/4"
-//   feet(45.5) => "3' 9 1/2"
-//   feet(10) => "10"
+//   feet("24.5") => 2' 1/2"
+//   feet(1.25) => 1 1/4"
+//   feet(45.5) => 3' 9 1/2"
+//   feet(10) => 10"
 //
 // Returns: string
 function feet(number) {
@@ -81,7 +83,7 @@ function feet(number) {
 
   if (decimal === 0) return wholepart;
 
-  if (!wholepart) return fraction(decimal);
+  if (!wholepart) return `${fraction(decimal)}"`;
 
   return `${wholepart} ${mixedFraction(decimal)}`;
 }
