@@ -143,3 +143,7 @@ test("parenthesis equation", () => {
     expect(parse(`(1/2" * 4) / 1`)).toBe(2);
   }).not.toThrowError();
 });
+
+test("ignores partial equation", () => {
+  expect(parse(`5 + `)).toBeUndefined();
+});

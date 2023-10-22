@@ -1,4 +1,4 @@
-const { convert, fraction, gcd } = require("../src/lib.js");
+const { mixedFraction, fraction, gcd } = require("../src/lib.js");
 
 test("should find greatest common denominator", () => {
   expect(gcd(12, 16)).toBe(4);
@@ -29,17 +29,17 @@ test("should convert larger numbers to fractions", () => {
 });
 
 test("should convert whole number", () => {
-  expect(convert(1)).toBe(1);
+  expect(mixedFraction(1)).toBe("1");
 });
 
 test("should convert a fraction", () => {
-  expect(convert(0.125)).toBe("1/8");
+  expect(mixedFraction(0.125)).toBe("1/8");
 });
 
 test("should convert a whole and fraction", () => {
-  expect(convert(1.25)).toBe("1 1/4");
+  expect(mixedFraction(1.25)).toBe("1 1/4");
 });
 
-test("should convert", () => {
-  expect(convert("10 +")).toBeNull();
+test("should throw error on invalid input", () => {
+  expect(() => mixedFraction("10 +")).toThrowError();
 });

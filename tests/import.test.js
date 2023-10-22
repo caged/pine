@@ -1,4 +1,4 @@
-const { grammar, gcd, convert, fraction } = require("../index.js");
+const { grammar, gcd, mixedFraction, fraction } = require("../index.js");
 
 test("should import grammar", () => {
   expect(grammar).toBeTruthy();
@@ -6,6 +6,6 @@ test("should import grammar", () => {
 
 test("should import utilities", () => {
   expect(gcd).toBeTruthy();
-  expect(convert).toBeTruthy();
+  expect(mixedFraction).toBeTruthy();
   expect(fraction).toBeTruthy();
 });
